@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
   withGoogleMap,
@@ -6,15 +6,23 @@ import {
   Marker,
 } from "react-google-maps";
 
-const Map = withGoogleMap(props =>
-    <GoogleMap
-      defaultZoom={8}
-      defaultCenter={{ lat: -34.397, lng: 150.644 }}
-    >
-      <Marker
-        position={{ lat: -34.397, lng: 150.644 }}
-      />
-    </GoogleMap>
-);
+const Map = withGoogleMap(
+  class Wrap extends Component { 
+  
+  render() {
+    return (
+       Object.keys(this.props.position).length !== 0 ? 
+          <GoogleMap
+            defaultZoom={8}
+            defaultCenter={this.props.position}
+          >
+            <Marker
+              position={this.props.position}
+            />
+          </GoogleMap> 
+          : null
+    )
+  }
+})
 
 export default Map;

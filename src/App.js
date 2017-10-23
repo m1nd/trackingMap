@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Sortable from 'react-sortablejs';
 
+import Input from './components/Input/Input';
 import List from './components/List/List';
 import Map from './components/Map/Map';
 import { getData } from './api';
@@ -15,8 +16,8 @@ class App extends Component {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(pos => 
                                                 this.setState({ position:  { 
-                                                                              latitude: pos.coords.latitude, 
-                                                                              longitude: pos.coords.longitude 
+                                                                              lat: pos.coords.latitude, 
+                                                                              lng: pos.coords.longitude 
                                                                             }
                                                                 }))
   }
@@ -26,6 +27,7 @@ class App extends Component {
       <div className="container">
         <div className="row">
           <div className="col col-lg-6">
+                <Input />
                 <Sortable
                   tag="ul" // Defaults to "div"
                   onChange={(order, sortable, evt) => { this.setState({ items: order }) }}
@@ -34,10 +36,11 @@ class App extends Component {
                 </Sortable>
           </div>
           <div className="col col-lg-6">
-            <Map containerElement={<div style={{ height: `400px` }} />} 
-                mapElement={<div style={{ height: `100%` }} />} 
+            <Map  position={this.state.position}
+                  containerElement={<div style={{ height: `400px` }} />} 
+                  mapElement={<div style={{ height: `100%` }} />} 
             />
-            </div>
+          </div>
         </div>
       </div>
     );
