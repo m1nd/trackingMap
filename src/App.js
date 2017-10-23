@@ -33,7 +33,11 @@ class App extends Component {
                   <List store={this.state.items}/>  
                 </Sortable>
           </div>
-          <Map position={this.state.position} />
+          <div className="col col-lg-6">
+            <Map containerElement={<div style={{ height: `400px` }} />} 
+                mapElement={<div style={{ height: `100%` }} />} 
+            />
+            </div>
         </div>
       </div>
     );
