@@ -6,11 +6,18 @@ import List from './components/List/List';
 import Map from './components/Map/Map';
 import { getData } from './api';
 
+let data = getData();
+
 class App extends Component {
 
   state = {
-    items: getData(),
+    items: data,
     position: {} 
+  }
+
+  addItem = item => {
+    data = [...data, item];
+     this.setState({ items: data});
   }
 
   componentDidMount() {
@@ -27,7 +34,7 @@ class App extends Component {
       <div className="container">
         <div className="row">
           <div className="col col-lg-6">
-                <Input />
+                <Input add={this.addItem}/>
                 <Sortable
                   tag="ul" // Defaults to "div"
                   onChange={(order, sortable, evt) => { this.setState({ items: order }) }}

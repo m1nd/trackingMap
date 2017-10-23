@@ -4,8 +4,16 @@ class Input extends Component {
 
   render() {
     return (
-      <form action="">
-        <input type="text" placeholder="Enter point coords..."/>
+      <form action="" >
+        <input type="text" placeholder="Enter point coords..." onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                this.props.add(e.target.value);
+                e.target.value = '';
+              }
+            }
+          }
+          />
       </form>
     )
   }
