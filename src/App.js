@@ -16,8 +16,13 @@ class App extends Component {
   }
 
   addItem = item => {
-    data = [...data, item];
-     this.setState({ items: data});
+    const newdata = [...this.state.items, item];
+    this.setState({ items: newdata });
+  }
+
+  changeList = item => {
+    const newData = this.state.items.filter((i, key) =>  key !== item);
+    this.setState({ items: newData });
   }
 
   componentDidMount() {
@@ -39,7 +44,7 @@ class App extends Component {
                   tag="ul" // Defaults to "div"
                   onChange={(order, sortable, evt) => { this.setState({ items: order }) }}
                 >
-                  <List store={this.state.items}/>  
+                  <List store={this.state.items} changeList={ item => this.changeList(item) }/>  
                 </Sortable>
           </div>
           <div className="col col-lg-6">

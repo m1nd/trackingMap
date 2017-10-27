@@ -8,7 +8,8 @@ class Input extends Component {
         <input type="text" placeholder="Enter point coords..." onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
-                this.props.add(e.target.value);
+
+                this.props.add(e.target.value.trim().split(' ').map(item => parseFloat(item)));
                 e.target.value = '';
               }
             }
