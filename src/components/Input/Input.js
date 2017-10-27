@@ -9,7 +9,7 @@ class Input extends Component {
               if (e.key === 'Enter') {
                 e.preventDefault();
 
-                this.props.add(e.target.value.trim().split(' ').map(item => parseFloat(item)));
+                this.props.add(e.target.value.trim().split(',').map(item => parseFloat(item)));
                 e.target.value = '';
               }
             }

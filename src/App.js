@@ -6,12 +6,10 @@ import List from './components/List/List';
 import Map from './components/Map/Map';
 import { getData } from './api';
 
-let data = getData();
-
 class App extends Component {
 
   state = {
-    items: data,
+    items: getData(),
     position: {} 
   }
 
@@ -51,6 +49,7 @@ class App extends Component {
             <Map  position={this.state.position}
                   containerElement={<div style={{ height: `400px` }} />} 
                   mapElement={<div style={{ height: `100%` }} />} 
+                  markers={this.state.items}
             />
           </div>
         </div>
